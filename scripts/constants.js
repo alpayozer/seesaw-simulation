@@ -1,0 +1,4 @@
+const MAX_ANGLE = 30;
+const PLANK_LENGTH = 500;
+
+export { MAX_ANGLE, PLANK_LENGTH };
