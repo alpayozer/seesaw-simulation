@@ -223,3 +223,14 @@ body {
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
   transform: translateX(-50%);
 }
+
+.reset-button {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-size: 1rem;
+}

@@ -1,12 +1,27 @@
-import { containerDisplay, plankDisplay } from "./dom.js";
+import {
+  containerDisplay,
+  logsDisplay,
+  plankDisplay,
+  resetButton,
+} from "./dom.js";
 import { updateSeesawPosition } from "./physics.js";
 import { state } from "./state.js";
 import { generateRandomWeight, renderBox } from "./ui.js";
+import { getSeesawWeights, saveSeesawWeights } from "./storage.js";
 
 const init = () => {
   console.log("Seesaw Simulation Initialized");
 
   generateRandomWeight();
+
+  resetButton.addEventListener("click", () => {
+    state.objects = [];
+    plankDisplay.innerHTML = `<div class="balance-point"></div>`;
+    logsDisplay.innerHTML = "";
+    localStorage.removeItem("seesawWeights");
+    updateSeesawPosition();
+    generateRandomWeight();
+  });
 
   containerDisplay.addEventListener("click", (e) => {
     const containerArea = containerDisplay.getBoundingClientRect();
@@ -34,9 +49,21 @@ const init = () => {
 
     renderBox(newBox);
     state.objects.push(newBox);
+    saveSeesawWeights();
     updateSeesawPosition();
     generateRandomWeight();
   });
+
+  if (getSeesawWeights()) {
+    try {
+      state.objects = getSeesawWeights();
+      state.objects.forEach((box) => renderBox(box));
+      updateSeesawPosition();
+    } catch (error) {
+      console.error("Error loading saved seesaw weights:", error);
+      localStorage.removeItem("seesawWeights");
+    }
+  }
 };
 
 document.addEventListener("DOMContentLoaded", init);
