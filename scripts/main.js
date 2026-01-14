@@ -8,6 +8,7 @@ import { updateSeesawPosition } from "./physics.js";
 import { state } from "./state.js";
 import { generateRandomWeight, renderBox } from "./ui.js";
 import { getSeesawWeights, saveSeesawWeights } from "./storage.js";
+import { playSound } from "./sound.js";
 
 const init = () => {
   console.log("Seesaw Simulation Initialized");
@@ -49,6 +50,7 @@ const init = () => {
 
     renderBox(newBox);
     state.objects.push(newBox);
+    playSound();
     saveSeesawWeights();
     updateSeesawPosition();
     generateRandomWeight();
