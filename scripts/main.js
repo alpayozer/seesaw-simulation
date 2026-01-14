@@ -29,6 +29,8 @@ const init = () => {
       id: Date.now(),
       weight: nextWeight,
       styleLeft: `${boxPoint}px`,
+      distance: Math.abs(scaledDistance),
+      side: boxDistance < 0 ? "left" : "right",
     };
 
     renderBox(newBox);

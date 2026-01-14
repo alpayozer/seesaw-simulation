@@ -1,6 +1,7 @@
 import {
   angleDisplay,
   leftWeightDisplay,
+  logsDisplay,
   nextWeightDisplay,
   plankDisplay,
   rightWeightDisplay,
@@ -31,6 +32,19 @@ const renderBox = (box) => {
   weightBox.style.left = box.styleLeft;
 
   plankDisplay.appendChild(weightBox);
+
+  if (logsDisplay && box.distance) {
+    renderLog(box.weight, box.distance, box.side);
+  }
+};
+
+const renderLog = (weight, distance, side) => {
+  const logItem = document.createElement("div");
+  logItem.classList.add("log-item");
+  logItem.textContent = `Dropped a ${weight}kg object ${Math.round(
+    distance
+  )}px to the ${side} of the center.`;
+  logsDisplay.prepend(logItem);
 };
 
 export { generateRandomWeight, updateValues, renderBox };
