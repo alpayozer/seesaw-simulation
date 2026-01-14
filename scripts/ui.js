@@ -26,9 +26,7 @@ const renderBox = (box) => {
   weightBox.textContent = `${box.weight}kg`;
 
   const scale = 0.7 + (box.weight / 10) * 0.8;
-  weightBox.style.width = `${40 * scale}px`;
-  weightBox.style.height = `${40 * scale}px`;
-
+  weightBox.style.width = `${9 * scale}%`;
   weightBox.style.left = box.styleLeft;
 
   plankDisplay.appendChild(weightBox);
