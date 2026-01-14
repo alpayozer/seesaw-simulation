@@ -1,13 +1,13 @@
 import { PLANK_LENGTH } from "./constants.js";
 import { containerDisplay } from "./dom.js";
+import { updateSeesawPosition } from "./physics.js";
 import { state } from "./state.js";
-import { generateRandomWeight, renderBox, updateValues } from "./ui.js";
+import { generateRandomWeight, renderBox } from "./ui.js";
 
 const init = () => {
   console.log("Seesaw Simulation Initialized");
 
   generateRandomWeight();
-  updateValues(10, 5, 20);
 
   containerDisplay.addEventListener("click", (e) => {
     const containerArea = containerDisplay.getBoundingClientRect();
@@ -17,13 +17,11 @@ const init = () => {
     const scaledDistance = boxDistance / scale;
     const boxPoint = PLANK_LENGTH / 2 + scaledDistance;
 
-    let nextWeight = state.nextWeight;
-
-    if (nextWeight <= 0) {
-      nextWeight = Math.floor(Math.random() * 10) + 1;
-      state.nextWeight = nextWeight;
-      nextWeightDisplay.textContent = `${state.nextWeight}kg`;
+    if (state.nextWeight <= 0) {
+      generateRandomWeight();
     }
+
+    const nextWeight = state.nextWeight;
 
     const newBox = {
       id: Date.now(),
@@ -35,6 +33,7 @@ const init = () => {
 
     renderBox(newBox);
     state.objects.push(newBox);
+    updateSeesawPosition();
     generateRandomWeight();
   });
 };
