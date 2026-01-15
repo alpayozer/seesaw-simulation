@@ -96,7 +96,7 @@ body {
 .plank {
   width: 500px;
   height: 10px;
-  background: var(--primary-color);
+  background: var(--base-color);
   border-radius: 5px;
   position: relative;
   transform-origin: center center;
@@ -106,15 +106,14 @@ body {
   transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.2s;
   background-position: center;
   background-image: repeating-linear-gradient(
-      to right,
-      transparent,
-      transparent 24px,
-      rgba(0, 0, 0, 0.2) 24px,
-      rgba(0, 0, 0, 0.2) 26px,
-      transparent 26px,
-      transparent 50px
-    ),
-    linear-gradient(to right, var(--primary-color), var(--secondary-color));
+    to right,
+    transparent,
+    transparent 24px,
+    rgba(0, 0, 0, 0.2) 24px,
+    rgba(0, 0, 0, 0.2) 26px,
+    transparent 26px,
+    transparent 50px
+  );
 }
 
 .balance-point {
